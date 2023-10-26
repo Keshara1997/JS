@@ -1,25 +1,42 @@
-let num1=2;
-let num2=3;
-document.getElementById("num1-el").textContent=num1;
-document.getElementById("num2-el").textContent=num2;
+let firstCard = 10
+let secondCard = 4
+let cards = [firstCard, secondCard]
+let sum = firstCard + secondCard
+let hasBlackJack = false
+let isAlive = true
+let message = ""
+let messageEl = document.getElementById("message-el")
 
+let sumEl = document.querySelector("#sum-el")
 
-let sumEl=document.getElementById("sum-el");
-function add(){
-    let result=num1+num2;
-    sumEl.textContent="Sum: "+result;
-}
-function subtract(){
-    let result=num1-num2;
-    sumEl.textContent="Sum: "+result;
-}
-function multiply(){
-    let result=num1*num2;
-    sumEl.textContent="Sum: "+result;
-} 
-function divide(){
-    let result=num1/num2;
-    sumEl.textContent="Sum: "+result;
+let cardEl = document.getElementById("card-el")
+
+function startGame(){
+    randerGame()
 }
 
+function randerGame(){
 
+    cardEl.textContent = "Cards: " + cards[0] + " " + cards[1]
+
+    sumEl.textContent = "Sum: " + sum
+
+    if (sum <= 20){
+        message = "Do you want to draw a new card?"
+    } else if (sum === 21){
+        message = "You've got Blackjack!"
+        hasBlackJack = true
+    } else {
+        message = "You're out of the game!"
+        isAlive = false
+    }
+    console.log(message)
+}
+
+function newCard(){
+    console.log("Drawing a new card from the deck!")
+
+    let card = 5
+    sum += card
+    randerGame()
+}
